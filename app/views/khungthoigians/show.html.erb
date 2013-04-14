@@ -1,0 +1,32 @@
+
+<table style="margin-left: auto;
+        margin-right: auto;">
+  <tr>
+    <td>
+      <p>
+        <b>Mã:</b>
+        <%= @khungthoigian.id %>
+      </p>
+
+      <p>
+        <b>Giờ xuất phát:</b>
+        <%= @khungthoigian.di.strftime("%H:%M:%S") %>
+      </p>
+
+      <p>
+        <b>Giờ đến trạm cuối:</b>
+        <%= @khungthoigian.den.strftime("%H:%M:%S") %>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <!--
+      %= link_to 'Cập nhật', edit_khungthoigian_path(@khungthoigian), :class => 'btn' %> |
+      -->
+      <%= link_to 'Quay lại danh sách', khungthoigians_path, :class => 'btn' %>
+    </td>
+  </tr>
+
+</table>

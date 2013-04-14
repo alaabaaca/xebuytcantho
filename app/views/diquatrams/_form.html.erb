@@ -1,0 +1,40 @@
+<%= simple_form_for @diquatram, :html => {:class => 'form-horizontal'} do |f| %>
+    <% if @diquatram.errors.any? %>
+        <div id="error_explanation">
+          <h2>Có <%= pluralize(@diquatram.errors.count, "") %>lỗi :</h2>
+
+          <ul>
+            <% @diquatram.errors.values.each do |msg| %>
+                <% msg.each do |m| %>
+                    <li><%= m %></li>
+                <% end %>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table style="margin-left: auto;
+            margin-right: auto; ">
+      <tr>
+        <td>
+
+          <div class="field">
+            <%= f.label "Tuyến xe:" %>
+
+            <%= f.select("matuyen", Tuyen.all.collect { |t| [t.tentuyen+ " - " + t.tentuyen2, t.matuyen] }, {:prompt => "Chọn tuyến xe"}) %>
+          </div>
+          <div class="field">
+            <%= f.label "Trạm dừng:" %>
+            <br/>
+            <%= f.select("matram", Tramdung.all.collect { |t| [t.tentram, t.id] }, {:prompt => "Chọn tên trạm xe"}) %>
+          </div>
+        </td>
+      </tr>
+    </table>
+    </br>
+
+    <div class="actions" style="text-align: center">
+      <button class="btn btn-primary" type="submit">Lưu</button>
+      <%= link_to "Hủy", diquatrams_path, :class => 'btn' %>
+    </div>
+<% end %>

@@ -1,0 +1,60 @@
+<div class="tieude">
+  <h3>GIỜ CHẠY CỦA CÁC CHUYẾN XE</h3>
+</div>
+
+
+<table class="table">
+  <tr>
+    <th>Biển số xe</th>
+    <th>Lượt</th>
+    <th>Thời gian</th>
+    <th></th>
+  </tr>
+
+  <% if (@cokhungthoigians != nil) then %>
+
+      <% @cokhungthoigians.each do |cokhungthoigian| %>
+          <tr>
+            <td><%= cokhungthoigian.biensoxe %></td>
+            <% @luot = cokhungthoigian.luot %>
+            <% if @luot == 0 %>
+                <td>Đi</td>
+            <% else %>
+                <td>Về</td>
+            <% end %>
+            <% @khungthoigian = Khungthoigian.find(cokhungthoigian.makhungtg)
+               @di = @khungthoigian.di
+               @den = @khungthoigian.den %>
+            <td><%= @di.strftime("%H:%M:%S") %> - <%= @den.strftime("%H:%M:%S") %></td>
+            <td style="text-align: right">
+              <%= link_to cokhungthoigian, :class => 'btn  btn-mini btn-info' do %>
+                  <i class="icon-info-sign"></i>
+              <% end %>
+              &nbsp;
+              <% if can? :update, Cokhungthoigian %>
+                  <%= link_to edit_cokhungthoigian_path(cokhungthoigian), :class => 'btn  btn-mini btn-warning' do %>
+                      <i class="icon-pencil"></i>
+                  <% end %>
+              <% end %>
+              &nbsp;
+              <% if can? :destroy, Cokhungthoigian %>
+                  <%= link_to cokhungthoigian_path(cokhungthoigian), method: :delete, data: {confirm: "Bạn có chắc chắn muốn xóa"}, :class => 'btn  btn-mini btn-danger' do %>
+                      <i class="icon-remove"></i>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+
+  <% end %>
+
+
+</table>
+
+<br/>
+
+<%= link_to 'Thêm mới', new_cokhungthoigian_path, :class => 'btn btn-success' %>
+
+<div style=" float: right;" class="flickr_pagination">
+  <%= will_paginate @cokhungthoigians %>
+</div>

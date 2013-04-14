@@ -1,0 +1,47 @@
+<table style="margin-left: auto;
+        margin-right: auto;">
+  <tr>
+    <td>
+      <p>
+        <b>Mã:</b>
+        <%= @cokhungthoigian.id %>
+      </p>
+
+      <p>
+        <b>Biển số xe:</b>
+        <%= @cokhungthoigian.biensoxe %>
+      </p>
+
+      <p>
+        <b>Lượt:</b>
+        <% @luot = @cokhungthoigian.luot %>
+        <% if @luot == 0 %> Đi
+        <% else %> Về
+        <% end %>
+
+      </p>
+
+      <p>
+        <b>Thời gian:</b>
+        <% @khungthoigian = Khungthoigian.find(@cokhungthoigian.makhungtg)
+           @di = @khungthoigian.di
+           @den = @khungthoigian.den %>
+        <%= @di.strftime("%H:%M:%S") %> - <%= @den.strftime("%H:%M:%S") %>
+      </p>
+
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <!--
+      % if can? :update, Cokhungthoigian %>
+          %= link_to 'Cập nhật', edit_cokhungthoigian_path(@cokhungthoigian), :class => 'btn' %> |
+      % end %>
+      -->
+      <%= link_to 'Quay lại danh sách', cokhungthoigians_path, :class => 'btn' %>
+    </td>
+  </tr>
+
+</table>
+

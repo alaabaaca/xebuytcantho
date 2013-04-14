@@ -1,0 +1,39 @@
+<div class="tieude">
+  <h3>GÓP Ý</h3>
+</div>
+
+
+<table class="table">
+  <tr>
+    <th>Biển số xe</th>
+    <th>Nội dung</th>
+    <th></th>
+  </tr>
+
+  <% if( @gopies != nil) then%>
+
+  <% @gopies.each do  |gopy| %>
+      <tr>
+        <td><%= gopy.biensoxe %></td>
+        <td><%= gopy.noidung %></td>
+        <td style="text-align: right">
+          <%= link_to gopy, :class => 'btn  btn-mini btn-info' do %>
+              <i class="icon-info-sign"></i>
+          <% end %>
+
+          <%= link_to gopy_path(gopy), method: :delete, data: {confirm: "Bạn có chắc chắn muốn xóa"}, :class => 'btn  btn-mini btn-danger' do %>
+              <i class="icon-remove"></i>
+          <% end %>
+      <% end %>
+        </td>
+      </tr>
+  <% end %>
+
+</table>
+
+
+<div style=" float: right;" class="flickr_pagination">
+  <%= will_paginate @posts %>
+</div>
+
+

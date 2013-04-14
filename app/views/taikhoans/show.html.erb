@@ -1,0 +1,33 @@
+
+<table style="margin-left: auto;
+        margin-right: auto;">
+  <tr>
+    <td>
+      <p>
+        <b>Mã:</b>
+        <%= @taikhoan.id %>
+      </p>
+
+      <p>
+        <b>Tên tài khoản:</b>
+        <%= @taikhoan.tentk %>
+      </p>
+
+      <p>
+        <b>Công ty:</b>
+        <%
+           @congty = Congty.find(@taikhoan.mact) %>
+        <%= @congty.tenct %>
+      </p>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+
+      <%= link_to 'Cập nhật', edit_taikhoan_path(@taikhoan), :class => 'btn' %> |
+      <%= link_to 'Quay lại danh sách', taikhoans_path, :class => 'btn' %>
+    </td>
+  </tr>
+
+</table>
